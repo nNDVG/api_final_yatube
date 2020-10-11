@@ -7,7 +7,7 @@ User = get_user_model()
 class Group(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(blank=True)
-    description = models.TextField(max_length=400)
+    description = models.TextField(max_length=400, blank=True)
 
     def __str__(self):
         return self.title
@@ -36,4 +36,3 @@ class Follow(models.Model):
 
     class Meta:
         unique_together = ('user', 'following')
-
