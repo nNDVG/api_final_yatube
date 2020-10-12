@@ -30,9 +30,6 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = '__all__'
-        '''Использовал чтбы по POST запросу можно было создать группу без поля  её описания, нашли более простое
-        решение, добавив в поле модели (blank=True)'''
-        #extra_kwargs = {'description': {'required': False}}
 
 
 class FollowSerializer(serializers.ModelSerializer):

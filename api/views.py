@@ -3,10 +3,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, permissions
 from rest_framework.viewsets import ModelViewSet
 
-from api.serializers import CommentSerializer, FollowSerializer, GroupSerializer, PostSerializer
-
 from .models import Follow, Group, Post
 from .permissions import IsOwnerOrReadOnly
+from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
+                          PostSerializer)
 
 
 class PostViewSet(ModelViewSet):
