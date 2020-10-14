@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, permissions
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ViewSetMixin
 
 from .models import Follow, Group, Post
 from .permissions import IsOwnerOrReadOnly
@@ -39,13 +39,13 @@ class CommentViewSet(ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class GroupListCreate(generics.ListCreateAPIView):
+class GroupList(ViewSetMixin, generics.ListCreateAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class FollowListCreate(generics.ListCreateAPIView):
+class FollowList(ViewSetMixin, generics.ListCreateAPIView):
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
